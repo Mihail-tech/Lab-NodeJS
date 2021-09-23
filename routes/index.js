@@ -1,14 +1,14 @@
-var express = require("express");
-var router = express.Router();
+import express from 'express';
+
+const router = express.Router();
 
 /* GET home page. */
 router.get("/", (req, res) => {
-  const name = req.query.name;
-  if (name === undefined) {
-    res.status(400).json({ name: "null", message: "You should write name" });
+  if (req.query.name) {
+    res.send(`<h1> hello ${ req.query.name }</h1>`);
   } else {
-    res.render("index", { name });
+    res.status(400).json({ name: "null", message: "You should write name" });
   }
 });
 
-module.exports = router;
+export default router;
