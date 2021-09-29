@@ -1,0 +1,5 @@
+{
+    // ... more .babelrc up here
+    "presets": ["@babel/preset-env"]
+    // ... more .babelrc down here
+  }
