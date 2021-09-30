@@ -34,9 +34,8 @@ class Controller {
         new: true,
       });
       return logger.info(res.status(200).json(update));
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err.message)
+    } catch (e) {
+        logger.error(res.status(500).json(e));
     }
   }
 
