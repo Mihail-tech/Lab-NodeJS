@@ -1,15 +1,16 @@
+import logger from "../config/logger";
 import Note from "../models/notes";
 
 class Controller {
   async read(req, res) {
     try {
       //return empty array
-      await res.status(200).send([]);
+      await logger.info(res.status(200).send([]));
       //return all notes
-      // const note = await Note.find({ $limit: 10 })
-      // return res.json(note)
+      // const note = await Note.find()
+      // return logger.info(res.json(note))
     } catch (e) {
-      res.status(500).json(e);
+        logger.error(res.status(500).json(e));
     }
   }
 
@@ -17,9 +18,9 @@ class Controller {
     try {
       const { title, content, timestamps } = req.body;
       const note = await Note.create({ title, content, timestamps });
-      return res.status(201).json(note);
+      return logger.info(res.status(201).json(note));
     } catch (e) {
-      res.status(500).json(e);
+      logger.error(res.status(500).json(e));
     }
   }
   //new: true, return version note by id
@@ -27,14 +28,15 @@ class Controller {
     try {
       const note = req.body;
       if (!note._id) {
-        res.status(400).json({ message: "нет ID" });
+        logger.error(res.status(400).json({ message: "нет ID" }));
       }
       const update = await Note.findByIdAndUpdate(note._id, note, {
         new: true,
       });
-      return res.status(200).json(update);
-    } catch (e) {
-      res.status(500).json(e);
+      return logger.info(res.status(200).json(update));
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err.message)
     }
   }
 
@@ -42,12 +44,12 @@ class Controller {
     try {
       const { id } = req.params;
       if (!id) {
-        res.status(400).json({ message: "нет ID" });
+        logger.error(res.status(400).json({ message: "нет ID" }));
       }
       await Note.findByIdAndDelete(id);
-      return res.status(204).json({ success: true, id: id });
+      return logger.info(res.status(201).json({ success: true, id: id }));
     } catch (e) {
-      res.status(500).json(e);
+      logger.error(res.status(500).json(e));
     }
   }
 }

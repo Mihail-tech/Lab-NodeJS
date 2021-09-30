@@ -3,11 +3,14 @@
 // Configure the db
 import dbConfig from '../config/data-base';
 import mongoose from 'mongoose';
+import logger from '../config/logger';
 
 const startApp = async() => {
   try{
     await mongoose.connect(dbConfig.url, {useUnifiedTopology: true, useNewUrlParser: true})
-    server.listen(port)
+    server.listen(port, () => {
+      logger.info( `server up and running on PORT : ${port}`)
+    })
   } catch(e) {
     console.log(e)
   }
