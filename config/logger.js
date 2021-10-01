@@ -3,7 +3,7 @@ import "winston-mongodb";
 
 const { timestamp, combine, printf, json } = format;
 
-const logFormat = printf(({ level, message, timestamp }) => {
+const logFormat = printf(({ level, message }) => {
   return `${level}: ${message}`;
 });
 

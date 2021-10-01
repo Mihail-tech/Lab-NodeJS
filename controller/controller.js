@@ -5,12 +5,19 @@ class Controller {
   async read(req, res) {
     try {
       //return empty array
-      await logger.info(res.status(200).send([]));
+      // await logger.info(res.status(200).send([]));
       //return all notes
-      // const note = await Note.find()
-      // return logger.info(res.json(note))
+      const pagination = {
+        page: parseInt(req.query.page, 10) || 0,
+        limit: parseInt(req.query.limit, 10) || 10,
+      };
+      const note = await Note.find()
+        .sort({_id: 1})
+        .skip(pagination.page * pagination.limit)
+        .limit(pagination.limit)
+      return logger.info(res.json(note));
     } catch (e) {
-        logger.error(res.status(500).json(e));
+      logger.error(res.status(500).json(e));
     }
   }
 
@@ -35,7 +42,7 @@ class Controller {
       });
       return logger.info(res.status(200).json(update));
     } catch (e) {
-        logger.error(res.status(500).json(e));
+      logger.error(res.status(500).json(e));
     }
   }
 
