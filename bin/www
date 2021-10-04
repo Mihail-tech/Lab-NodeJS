@@ -4,6 +4,10 @@
 import dbConfig from '../config/data-base';
 import mongoose from 'mongoose';
 import logger from '../config/logger';
+import { json } from 'express';
+import dotenv from 'dotenv'
+import { MongoClient } from 'mongodb';
+
 
 const startApp = async() => {
   try{
@@ -12,11 +16,16 @@ const startApp = async() => {
       logger.info( `server up and running on PORT : ${port}`)
     })
   } catch(e) {
-    console.log(e)
+    logger.error(json(e))
   }
 }
 startApp()
 
+dotenv.config()
+// console.log(process.env.PORT)
+//const url = process.env.PORT;
+// 
+//const connection = new Connection(process.env.DB_CONNECTION_STRING);
 /**
  * Module dependencies.
  */
