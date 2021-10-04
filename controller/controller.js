@@ -11,7 +11,8 @@ class Controller {
         page: parseInt(req.query.page, 10) || 0,
         limit: parseInt(req.query.limit, 10) || 10,
       };
-      const note = await Note.find()
+      //title: mouse, tiger, cat
+      const note = await Note.find({title: 'mouse'}, {})
         .sort({_id: 1})
         .skip(pagination.page * pagination.limit)
         .limit(pagination.limit)
