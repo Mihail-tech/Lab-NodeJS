@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "devstart": "nodemon -r esm ./bin/www",
-    "build": "npx babel ./bin/www --out-file www-compiled.js ",
+    "start": "node app.js",
+    "devstart": "nodemon -r esm app.js",
+    "build": "npx babel app.js --out-file app-compiled.js ",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
@@ -45,6 +45,6 @@
     "webpack-dev-server": "^4.2.1"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   }
 }
