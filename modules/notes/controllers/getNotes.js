@@ -1,25 +1,11 @@
-
-
 import { notesDB } from "../../../db/providers/notesProvider.js";
+import logger from "../../../utils/logger.js";
 
-
-const getNotes = async(req, res) => {
-   try {
-    // const limitNumber = 10;
-    // const pagination = {
-    //   page: parseInt(req.query.page, limitNumber) || 0,
-    //   limit: parseInt(req.query.limit, limitNumber) || limitNumber,
-    // };
-    const note = await notesDB.read()
-        // .sort({_id: 1})
-    //     .skip(pagination.page * pagination.limit)
-    //     .limit(pagination.limit)
-      return res.json(note);
-   } catch (e) {
-    res.status(500).json(e);
-   }
+export const getNotes = async (req, res) => {
+  try {
+    const note = await notesDB.read();
+    return logger.info(res.json(note));
+  } catch (e) {
+    logger.error(res.status(500).json(e));
+  }
 };
-
-export const notesGet = {
-    getNotes
-}

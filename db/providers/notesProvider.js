@@ -1,6 +1,3 @@
-import { Error } from "mongoose";
-import DB_URL from "../../config/constants";
-// import logger from '../../utils/logger';
 import Note from "../../models/notes";
 
 const read = async () => {
@@ -9,7 +6,7 @@ const read = async () => {
   //return all notes
   const limitNumber = 10;
   //title: mouse, tiger, cat
-  const note = await Note.find({ title: "tiger" }, {})
+  const note = await Note.find({ title: "cat" }, {})
     .sort({ _id: 1 })
     .limit(limitNumber);
 
@@ -17,7 +14,6 @@ const read = async () => {
 };
 
 const create = async (note) => {
-  //   const { title, content, timestamps } = req.body;
   const noteCreate = await Note.create(note);
   return noteCreate;
 };
@@ -34,27 +30,17 @@ const update = async (note) => {
   return updatePut;
 };
 
-//   const delet = async (id) => {
-
-//           if (!id) {
-//            throw new Error('no ID')
-//           }
-//           await note = Note.findByIdAndDelete(id);
-//           return note;
-
-//       }
-
-const del = async(id) => {
-    if (!id) {
-        throw new Error('не указан ID')
-    }
-    const note = await Note.findByIdAndDelete(id);
-    return note;
-}
+const del = async (id) => {
+  if (!id) {
+    throw new Error("no ID");
+  }
+  const note = await Note.findByIdAndDelete(id);
+  return note;
+};
 
 export const notesDB = {
   read,
   create,
   update,
-  del
+  del,
 };
