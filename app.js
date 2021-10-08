@@ -1,11 +1,12 @@
 import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
-import DB_URL from "./config/constants";
 import mongoose from "mongoose";
+
+import DB_URL from "./config/constants";
 import logger from "./utils/logger";
 
-import indexRouter from "./modules/greeting/routes/index";
+import greeringRouter from "./modules/greeting/routes";
 import notesRouter from "./modules/notes/routes";
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static("static"));
 
-app.use("/api/greetings", indexRouter);
+app.use("/api/greetings", greeringRouter);
 app.use("/api/notes", notesRouter);
 
 // catch 404 and forward to error handler
@@ -47,11 +48,9 @@ const startApp = async () => {
     });
     app.listen(port, () => {
       logger.info(`server up and running on PORT : ${port}`);
-      console.log(`server up and running on PORT : ${port}`);
     });
   } catch (e) {
     logger.error(json(e));
-    console.log(e);
   }
 };
 startApp();

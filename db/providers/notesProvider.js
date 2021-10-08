@@ -1,25 +1,19 @@
 import Note from "../../models/notes";
+import { LIMIT_NUMBER } from "../../setters/getters/calculations/uppercase constant";
 
-const read = async () => {
-  //return empty array
-  // await logger.info(res.status(200).send([]));
-  //return all notes
-  const limitNumber = 10;
-  //title: mouse, tiger, cat
-  const note = await Note.find({ title: "cat" }, {})
+export const getNote = async () => {
+  const note = await Note.find({ title: "tiger" }, {})
     .sort({ _id: 1 })
-    .limit(limitNumber);
-
-  return note;
+    .limit( LIMIT_NUMBER );
+    return note;
 };
 
-const create = async (note) => {
+export const createNote = async (note) => {
   const noteCreate = await Note.create(note);
   return noteCreate;
 };
 
-//new: true, return version note by id
-const update = async (note) => {
+export const updateNote = async (note) => {
   if (!note._id) {
     throw new Error("no ID");
   }
@@ -30,17 +24,10 @@ const update = async (note) => {
   return updatePut;
 };
 
-const del = async (id) => {
+export const deleteNote = async (id) => {
   if (!id) {
     throw new Error("no ID");
   }
   const note = await Note.findByIdAndDelete(id);
   return note;
-};
-
-export const notesDB = {
-  read,
-  create,
-  update,
-  del,
 };

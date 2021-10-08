@@ -1,13 +1,11 @@
-import { notesDB } from "../../../db/providers/notesProvider.js";
+import { updateNote } from "../../../db/providers/notesProvider.js";
 import logger from "../../../utils/logger.js";
 
 
-// new: true, return version note by id
- export  const putNotes = async(req, res) => {
+ export  const updateOneNote = async(req, res) => {
     try {
-      
-      const update = await notesDB.update(req.body);
-      return logger.info(res.status(200).json(update));
+      const noteUpdate = await updateNote(req.body);
+      return logger.info(res.status(200).json(noteUpdate));
     } catch (e) {
      logger.error(res.status(500).json(e));
     }
