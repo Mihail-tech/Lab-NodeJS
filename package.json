@@ -6,7 +6,9 @@
     "start": "node app.js",
     "devstart": "nodemon -r esm app.js",
     "build": "npx babel app.js --out-file app-compiled.js ",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "start:dev": "set NODE_ENV=Development && nodemon -r esm app.js",
+    "start:test": "set NODE_ENV=Test&&echo && nodemon -r esm app.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",

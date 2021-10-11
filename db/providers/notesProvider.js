@@ -1,5 +1,10 @@
+import dotenv from "dotenv";
+
 import Note from "../../models/notes";
 import { LIMIT_NUMBER } from "../../setters/getters/calculations/uppercase constant";
+import { postfix } from "../../utils/milieu";
+
+dotenv.config();
 
 export const getNote = async () => {
   const note = await Note.find({ title: "tiger" }, {})
@@ -9,6 +14,7 @@ export const getNote = async () => {
 };
 
 export const createNote = async (note) => {
+  note.title = postfix(note.title);
   const noteCreate = await Note.create(note);
   return noteCreate;
 };
