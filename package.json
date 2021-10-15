@@ -8,7 +8,9 @@
     "build": "npx babel app.js --out-file app-compiled.js ",
     "heroku-postbuild": "npm run build",
     "start:dev": "set NODE_ENV=Development && nodemon -r esm app.js",
-    "start:test": "set NODE_ENV=Test&&echo && nodemon -r esm app.js"
+    "start:test": "set NODE_ENV=Test&&echo && nodemon -r esm app.js",
+    "migrate:up": "migrate-mongo up",
+    "migrate:down": "migrate-mongo down"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
@@ -39,6 +41,7 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^6.3.0",
     "eslint": "^7.32.0",
+    "migrate-mongo": "^8.2.3",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.1",
     "style-loader": "^3.3.0",

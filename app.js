@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 
-import DB_URL from "./config/constants";
+import {DB_URL} from './config/constants';
 import logger from "./utils/logger";
 
 import greeringRouter from "./modules/greeting/routes";

@@ -12,7 +12,7 @@ const Note = new mongoose.Schema(
       required: true,
       maxLength: 500,
       minLength: 3,
-    },
+    }
   },
   { timestamps: true }
 );

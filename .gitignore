@@ -2,6 +2,5 @@ node_modules
 /lib
 esm
 app-compiled.js
-info.log
-
-.env
+logging/
+/info.log

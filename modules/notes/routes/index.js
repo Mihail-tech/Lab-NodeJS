@@ -1,5 +1,5 @@
 import express from "express";
-import { direct } from "../../../config/direct";
+import { direct } from "../controllers";
 
 const router = express.Router();
 
@@ -9,6 +9,6 @@ router.post("/", direct.createOneNote );
 
 router.put("/:id", direct.updateOneNote);
 
-router.delete("/:id", direct.deleteOneNotes);
+router.delete("/:id", direct.deleteOneNote);
 
 export default router;

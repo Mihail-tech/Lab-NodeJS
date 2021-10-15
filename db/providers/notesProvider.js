@@ -1,16 +1,16 @@
 import dotenv from "dotenv";
 
 import Note from "../../models/notes";
-import { LIMIT_NUMBER } from "../../setters/getters/calculations/uppercase constant";
-import { postfix } from "../../utils/milieu";
+import { LIMIT_NUMBER } from "../../config/constants";
+import { postfix } from "../../utils/environment";
 
 dotenv.config();
 
 export const getNote = async () => {
-  const note = await Note.find({ title: "tiger" }, {})
+  const note = await Note.find({ title: "tiger", description: "animal" })
     .sort({ _id: 1 })
-    .limit( LIMIT_NUMBER );
-    return note;
+    .limit(LIMIT_NUMBER);
+  return note;
 };
 
 export const createNote = async (note) => {
@@ -24,10 +24,10 @@ export const updateNote = async (note) => {
     throw new Error("no ID");
   }
 
-  const updatePut = await Note.findByIdAndUpdate(note._id, note, {
+  const update = await Note.findByIdAndUpdate(note._id, note, {
     new: true,
   });
-  return updatePut;
+  return update;
 };
 
 export const deleteNote = async (id) => {
