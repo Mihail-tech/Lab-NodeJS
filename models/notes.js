@@ -12,9 +12,13 @@ const Note = new mongoose.Schema(
       required: true,
       maxLength: 500,
       minLength: 3,
+    },
+    isDeleted: {
+      type: Boolean, 
+      default: false
     }
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("Note", Note);

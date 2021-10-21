@@ -6,17 +6,20 @@ import { postfix } from "../../utils/environment";
 
 dotenv.config();
 
-export const getNote = async () => {
-  const note = await Note.find({ title: "tiger", description: "animal" })
-    .sort({ _id: 1 })
-    .limit(LIMIT_NUMBER);
-  return note;
+export const getNotes = async ({ filter }) => {
+  const notes = await Note.find(filter)
+  .sort({ _id: 1 })
+  .limit(LIMIT_NUMBER);
+  return notes;
 };
 
 export const createNote = async (note) => {
-  note.title = postfix(note.title);
-  const noteCreate = await Note.create(note);
-  return noteCreate;
+  const modifiedNote = {
+    ...note,
+    title: postfix(note.title),
+  };
+  const createdNote = await Note.create(modifiedNote);
+  return createdNote;
 };
 
 export const updateNote = async (note) => {
@@ -24,16 +27,16 @@ export const updateNote = async (note) => {
     throw new Error("no ID");
   }
 
-  const update = await Note.findByIdAndUpdate(note._id, note, {
+  const updatedNote = await Note.findByIdAndUpdate(note._id, note, {
     new: true,
   });
-  return update;
+  return updatedNote;
 };
 
 export const deleteNote = async (id) => {
   if (!id) {
     throw new Error("no ID");
   }
-  const note = await Note.findByIdAndDelete(id);
-  return note;
+  const deletedNote = await Note.findByIdAndDelete({_id: id}, {$set: {isDeleted: false}});
+  return deletedNote;
 };

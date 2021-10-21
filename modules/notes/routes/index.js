@@ -3,7 +3,7 @@ import { direct } from "../controllers";
 
 const router = express.Router();
 
-router.get("/", direct.getNotes)
+router.get("/", direct.getListNotes)
 
 router.post("/", direct.createOneNote );
 

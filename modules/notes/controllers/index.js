@@ -1,10 +1,10 @@
 import { createOneNote } from "./createNotes";
 import { deleteOneNote } from "./deleteNotes";
-import { getNotes } from "./getNotes";
+import { getListNotes } from "./getNotes";
 import { updateOneNote } from "./updateNotes";
 
 export const direct = {
-    getNotes,
+    getListNotes,
     createOneNote,
     updateOneNote,
     deleteOneNote
