@@ -2,13 +2,14 @@ import { getNotes } from "../../../db/providers/notesProvider.js";
 import logger from "../../../utils/logger.js";
 
 export const getListNotes = async (req, res) => {
+  const {title, description} = req.query;
   const filter = {};
-  if (req.query.title) {
-    filter.title = req.query.title;
+  if (title) {
+    filter.title = title;
   }
 
-  if (req.query.description) {
-    filter.description = req.query.description;
+  if (description) {
+    filter.description = description;
   }
 
   try {
