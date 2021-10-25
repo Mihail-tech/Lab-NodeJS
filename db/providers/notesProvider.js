@@ -6,10 +6,10 @@ import { postfix } from "../../utils/environment";
 
 dotenv.config();
 
-export const getNotes = async ({filter }) => {
-  const notes = await Note.find({filter}, {$set:{isDeleted:false}})
-  .sort({ _id: 1 })
-  .limit(LIMIT_NUMBER);
+export const getNotes = async ({ filter }) => {
+  const notes = await Note.find({ filter }, { set: { isDeleted: false } })
+    .sort({ _id: 1 })
+    .limit(LIMIT_NUMBER);
   return notes;
 };
 
@@ -37,6 +37,12 @@ export const deleteNote = async (id) => {
   if (!id) {
     throw new Error("no ID");
   }
-  const deletedNote = await Note.findByIdAndDelete({_id: id}, {$set: {isDeleted: true}});
+  const deletedNote = await Note.findByIdAndUpdate(
+    { _id: id },
+    { $set: { isDeleted: true } },
+    {
+      new: true,
+    }
+  );
   return deletedNote;
 };
