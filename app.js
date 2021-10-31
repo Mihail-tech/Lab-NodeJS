@@ -3,6 +3,8 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
+import swaggerUI from "swagger-ui-express";
+import swaggerJSDoc from "swagger-jsdoc";
 
 import {DB_URL} from './config/constants';
 import logger from "./utils/logger";
@@ -13,6 +15,25 @@ import notesRouter from "./modules/notes/routes";
 const app = express();
 dotenv.config()
 const port = process.env.PORT || "3000";
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Libriry API",
+      version: "1.0.0",
+      description: "A simple documentation about note"
+    },
+    servers: [
+      {
+        url: "http://localhost:3000/"
+      }
+    ],
+  },
+  apis: ["./modules/notes/routes/*.js"]
+}
+
+const specs = swaggerJSDoc(options)
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -25,6 +46,7 @@ app.use(express.static("static"));
 
 app.use("/api/greetings", greeringRouter);
 app.use("/api/notes", notesRouter);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs))
 
 const startApp = async () => {
   try {
