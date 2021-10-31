@@ -3,35 +3,55 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "devstart": "nodemon -r esm ./bin/www",
-    "build": "babel lib -d dist",
-    "heroku-postbuild": "npm run build"
+    "start": "node app.js",
+    "devstart": "nodemon -r esm app.js",
+    "build": "npx babel app.js --out-file app-compiled.js ",
+    "heroku-postbuild": "npm run build",
+    "start:dev": "set NODE_ENV=Development && nodemon -r esm app.js",
+    "start:test": "set NODE_ENV=Test&&echo && nodemon -r esm app.js",
+    "migrate:up": "migrate-mongo up",
+    "migrate:down": "migrate-mongo down"
   },
   "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "chalk": "^4.1.2",
+    "color": "^4.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dist": "^0.1.2",
+    "dotenv": "^10.0.0",
     "esm": "^3.2.25",
     "express": "~4.16.1",
+    "fs": "^0.0.1-security",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "lib": "^4.3.3",
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.7",
+    "morgan": "~1.9.1",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
+    "winston": "^3.3.3",
+    "winston-mongodb": "^5.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
     "@babel/preset-env": "^7.15.6",
-    "@babel/preset-react": "^7.14.5",
     "@babel/register": "^7.15.3",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.3.0",
     "eslint": "^7.32.0",
+    "migrate-mongo": "^8.2.3",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.1",
     "style-loader": "^3.3.0",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
