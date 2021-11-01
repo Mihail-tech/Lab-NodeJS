@@ -14,7 +14,7 @@ import notesRouter from "./modules/notes/routes";
 
 const app = express();
 dotenv.config()
-const port = process.env.PORT || "3000";
+const port = process.env.PORT || "3001";
 
 const options = {
   definition: {
@@ -26,7 +26,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/"
+        url: "http://localhost:3001/"
       }
     ],
   },

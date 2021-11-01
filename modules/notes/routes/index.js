@@ -48,7 +48,7 @@ const router = express.Router();
  * @swagger
  * /api/notes:
  *   get:
- *     summary: Get a new notes
+ *     summary: Get notes
  *     tags: [Notes]
  *     responses:
  *       200:
