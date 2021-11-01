@@ -1,5 +1,6 @@
 node_modules
 /lib
+app-compiled.js
 esm
 logging/
 /info.log
