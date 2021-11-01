@@ -28,7 +28,7 @@ const options = {
       {
         url: "http://localhost:3001/"
       }
-    ],
+    ], 
   },
   apis: ["./modules/notes/routes/*.js"]
 }
