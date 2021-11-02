@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 
-import {DB_URL} from './config/constants';
+import { DB_URL } from "./config/constants";
 import logger from "./utils/logger";
 
 import greeringRouter from "./modules/greeting/routes";
