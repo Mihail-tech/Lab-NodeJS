@@ -1,7 +1,7 @@
 import express from "express";
 import { direct } from "../controllers";
 
-const router = express.Router();
+const router = express.Router(); 
 
 /**
  * @swagger
@@ -48,7 +48,7 @@ const router = express.Router();
  * @swagger
  * /api/notes:
  *   get:
- *     summary: Get a new notes
+ *     summary: Get notes
  *     tags: [Notes]
  *     responses:
  *       200:

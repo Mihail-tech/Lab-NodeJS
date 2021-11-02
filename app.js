@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 
-import {DB_URL} from './config/constants';
+import { DB_URL } from "./config/constants";
 import logger from "./utils/logger";
 
 import greeringRouter from "./modules/greeting/routes";
@@ -14,7 +14,7 @@ import notesRouter from "./modules/notes/routes";
 
 const app = express();
 dotenv.config()
-const port = process.env.PORT || "3000";
+const port = process.env.PORT || "3001";
 
 const options = {
   definition: {
@@ -26,9 +26,9 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/"
+        url: "http://localhost:3001/"
       }
-    ],
+    ], 
   },
   apis: ["./modules/notes/routes/*.js"]
 }

@@ -2,8 +2,9 @@
   "name": "lab-nodejs",
   "version": "0.0.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node -r esm app.js",
     "devstart": "nodemon -r esm app.js",
     "build": "npx babel app.js --out-file app-compiled.js ",
     "heroku-postbuild": "npm run build",
@@ -52,6 +53,6 @@
     "webpack-dev-server": "^4.2.1"
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.10.0"
   }
 }
